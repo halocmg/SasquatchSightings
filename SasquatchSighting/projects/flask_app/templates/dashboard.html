@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>dashboard</title>
+    <!-- Boostrap CSS -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+        integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+</head>
+
+<body>
+    <h1 class="text-center">Sasquatch Sightings</h1>
+    <h2>{{account.first_name}} {{account.last_name}}</h2>
+    <a href="/logout" class="btn btn-info">Logout</a>
+    <a href="/new/sighting" class="btn btn-info">Report a Sighting</a>
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Location</th>
+                <th>Date</th>
+                <th>Reporter</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for band in bands %}
+            <tr>
+                <td>{{ band.location }}</td>
+                <td>{{ band.time }}</td>
+                {% for j in check %}
+                {% if j.id == band.account_id %}
+                <td>{{j.first_name}} {{j.last_name}}</td>
+                {% endif %}
+                {% endfor %}
+                <td>
+                    <a href="/show/{{ band.id }}">Show</a>
+                    {% if account.id == band.account_id%}
+                    | <a href="/edit/{{ band.id }}">Edit</a> |
+                    <a href="/destroy/{{ band.id }}">Delete</a>
+                    {% endif %}
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+
+</body>
+
+</html>

@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center">Sasquatch Sightings</h1>
+    <a href="/logout" class="btn btn-info">Logout</a>
+    <a href="/dashboard" class="btn btn-info">Return to Dashboard</a>
+    <form action="/sightingedit" method="post" class="col-4 p-4 bg-dark text-light">
+        <h2 class="text-success">New Sighting</h2>
+        {% with messages = get_flashed_messages(category_filter=['saw']) %}
+                {% if messages %}
+                <div class="alert alert-danger" role="alert">
+                    <strong>Flash</strong>
+                        {% for message in messages %}
+                        <p>{{message}}</p>
+                        {% endfor %}
+                </div>
+                {% endif %}
+            {% endwith %}
+        <div class="form-group">
+            <input type="hidden" name="id" value="{{user.id}}">
+            <label for="location">Location:</label>
+            <input type="text" name="location" value="{{user.location}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="time">Time:</label>
+            <input type="date" name="time" value="{{user.time}}" class="form-control">
+        </div>
+        <div class="form-group">
+            <label for="description">What Happened:</label>
+            <textarea type="text" name="description" class="form-control">{{user.description}}</textarea>
+        </div>
+        <div class="form-group">
+            <label for="amount"># of Sasquatches:</label>
+            <input type="number" name="amount" value="{{user.amount}}" class="form-control">
+        </div>
+        <input type="submit" value="Report" class="btn btn-success">
+    </form>
+    
+</body>
+</html>

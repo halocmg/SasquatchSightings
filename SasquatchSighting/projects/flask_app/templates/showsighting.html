@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1 class="text-center">Sasquatch Sightings</h1>
+    <a href="/logout" class="btn btn-info">Logout</a>
+    <a href="/dashboard" class="btn btn-info">Return to Dashboard</a>
+    <p>{{user.location}} on {{user.time}}</p>
+    <p>What Happend:</p>
+    <p>{{user.description}}</p>
+    <p># of Sasquatches: {{user.amount}}</p>
+    {% for j in check %}
+    {% if j.id == user.account_id %}
+    <p>Reported By: {{j.first_name}} {{j.last_name}}</p>
+    {% endif %}
+    {% endfor %}
+</body>
+</html>
